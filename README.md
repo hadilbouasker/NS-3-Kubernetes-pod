@@ -1,0 +1,135 @@
+# NS-3 Kubernetes pod
+
+<p align="center">
+  <img src="Figures/1_IconsAll_Hori.png" alt="logo" width="800"/>
+</p>
+
+## Description
+This repository contains an NS-3 simulation pod that runs a C++ script (NS-3) to simulate different network conditions based on parameters provided in a csv file . The simulation updates parameters at each timestep based on different time intervals and executes within a Kubernetes environment.
+This project provides an NS-3 simulation environment running inside a Kubernetes pod. It dynamically updates parameters like the number of UEs, data rate, simulation time, and packet size based on the input CSV file, adjusting these values over different time intervals. The containerized setup, built with Docker, allows easy deployment and execution. In addition to running the simulation, it offers real-time monitoring of CPU and memory usage using Prometheus, with resource usage visualizations generated through a dedicated Python script.
+
+
+## Pre-requisite
+Tested on Ubuntu 20.04
+
+# Install Docker and Build a K8s cluster
+to install Docker and build a Kubernetes cluster, refer to this repository : https://github.com/AIDY-F2N/OAI-UERANSIM?tab=readme-ov-file
+
+# Run the NS-3 Docker image and deploy the pod
+
+Follow these steps to pull the Docker image, run it locally, and deploy it into a Kubernetes pod:
+
+Pull the latest version of the NS-3 simulation image from Docker Hub.
+
+    docker pull hadilbouasker/ns3-app:v7.0
+
+Run this command to verify the installation of the docker image
+
+    docker images | grep hadilbouasker/ns3-app
+
+<p align="center">
+  <img src="Figures/docker_images.png" alt="docker image" width="700"/>
+</p> 
+
+Apply the YAML configuration to deploy the NS-3 simulation as a pod in your cluster.
+
+    kubectl apply -f ns3-simulation-pod.yaml
+
+Check the status of the deployed pod to ensure it’s up and running.
+
+    kubectl get pods
+    
+<p align="center">
+  <img src="Figures/get_pods.png" alt="pod is running" width="700"/>
+</p>
+
+Check the logs of the pod by using this command:
+
+    kubectl logs <name-of-the-pod>
+
+<p align="center">
+  <img src="Figures/pod_logs.png" alt="Pod Logs" width="700"/>
+</p>
+
+# Setup Prometheus Monitoring
+
+In this phase, we set up Prometheus on our Kubernetes cluster. This setup collects node, pods, and service metrics automatically using Prometheus service discovery configurations.
+
+The "prometheus" folder contains all Prometheus Kubernetes Manifest Files. Inside the "prometheus" folder, open a terminal and execute the following command to create a new namespace named monitoring.
+
+    kubectl create namespace monitoring
+You can create the RBAC role by running the following command.
+
+    kubectl create -f clusterRole.yaml
+
+Create the ConfigMap by running the following command.
+
+    kubectl create -f config-map.yaml
+
+Deploy Prometheus in the monitoring namespace using the following command.
+
+    kubectl create  -f prometheus-deployment.yaml 
+
+You can check the created deployment using the following command.
+
+    kubectl get deployments --namespace=monitoring
+
+<p align="center">
+  <img src="Figures/prometheus1.png" alt="prometheus1" width="700"/>
+</p>
+
+
+You can check the created pod using the following command.
+
+    kubectl get pods --namespace=monitoring
+
+<p align="center">
+  <img src="Figures/prometheus2.png" alt="prometheus2" width="700"/>
+</p>
+
+
+Create the service using the following command:
+
+    kubectl create -f prometheus-service.yaml --namespace=monitoring
+
+
+# Monitor CPU & Memory usage
+
+we included Prometheus-based monitoring to track resource usage inside the pod. A Python script is provided to visualize CPU and memory usage over time.
+
+Before running the monitoring script, make sure to update the following parameters:
+
+- **`--prometheus-url`**: replace with the URL of your Prometheus server.
+- **`--pod-name`**: replace with the name of your specific pod (you can get the pod name using `kubectl get pods`).
+
+
+
+      python3 monitor_resources.py --prometheus-url http://<your-prometheus-url>:<port> --pod-name <your-pod-name>
+  
+Example:
+
+      python3 monitor_resources.py --prometheus-url http://157.159.68.41:30000 --pod-name ns3-simulation-847554cdf7-sxzl5
+      
+<p align="center">
+  <img src="Figures/cpu_memory_plot.png" alt="CPU & Memory Usage Plot" width="700"/>
+</p>
+
+# About cttc-nr-mimo-demo-vbr-auto-ue.cc
+
+This script is based on the CTTC NS-3 MIMO demo and provides a structured way to set up MIMO simulations using the 3GPP channel model from TR 38.900. The example consists of a single gNB and multiple UEs, adjusting parameters dynamically at different time intervals.
+
+This script builds upon the CTTC NS-3 MIMO demo, providing a framework for simulating MIMO scenarios using the 3GPP channel model from TR 38.900. It sets up a basic simulation environment consisting of a single gNB and multiple UEs, dynamically adjusting key parameters according to predefined time intervals. The simulation adapts to varying user densities and implements downlink flows with bandwidth adjustments. It also generates detailed simulation results, which are saved to a file for further analysis.
+
+
+# Modification
+
+# Delete the pod and the docker image: 
+To completely remove the NS-3 simulation pod and its associated Docker image from your system, use the following commands:
+
+Delete the Kubernetes deployment: This command stops and removes the running pod associated with the deployment.
+
+    kubectl delete deployment ns3-simulation
+
+Remove the Docker image: This command forcefully deletes the local Docker image to free up disk space.
+
+    docker rmi -f hadilbouasker/ns3-app:v7.0
