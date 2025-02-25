@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ns3-simulation
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ns3-simulation
+  template:
+    metadata:
+      labels:
+        app: ns3-simulation
+    spec:
+      containers:
+      - name: ns3-container
+        image: hadilbouasker/ns3-app:v7.0 
+        command: ["python3", "automate_sim_with_UE.py"]
+        resources:
+          requests:
+            memory: "500Mi"   
+            cpu: "1"      
+          limits:
+            memory: "5Gi"   
+            cpu: "4" 
+      tolerations:
+      - key: "node.kubernetes.io/disk-pressure"
+        operator: "Exists"
+        effect: "NoExecute"
+        tolerationSeconds: 3600
+
+
+
+
+
+
+
+
+#kubectl apply -f ns3-simulation-pod.yaml
+
+#kubectl logs ns3-simulation-8f87cdbdf-frk74
+#kubectl exec -it ns3-simulation-pod -- /bin/bash
+#rm -rf /ns-3-dev/cttc-nr-mimo-demo-vbr-auto-ue/cmake-cache/*
+#cd /ns-3-dev
+#./ns3 configure --enable-examples --enable-tests
+#./ns3 build
+#cd cmake-cache
+#/usr/bin/cmake -DNS3_EXAMPLES=ON -DNS3_TESTS=ON ..
+#cd /ns-3-dev
+#./ns3 build
+
+#docker commands:
+
+#docker login
+#docker push hadilbouasker/ns3-image:latest
+
+    #to enter inside the image
+#docker run --rm -it ryankurte/docker-ns3 
+#docker run --rm -it praneethkumarvakrani/ns3:v5.0.3 bash
+#ls -lh
+    #to know what causes the storage 
+#docker history hadilbouasker/ns3-app:v1.0
+    #to remove the image
+#docker rmi -f hadilbouasker/ns3-app:v1.0
