@@ -5,15 +5,15 @@
 </p>
 
 ## Description
-This repository contains an NS-3 simulation pod that runs a C++ script (NS-3) to simulate different network conditions based on parameters provided in a csv file . The simulation updates parameters at each timestep based on different time intervals and executes within a Kubernetes environment.
-This project provides an NS-3 simulation environment running inside a Kubernetes pod. It dynamically updates parameters like the number of UEs, data rate, simulation time, and packet size based on the input CSV file, adjusting these values over different time intervals. The containerized setup, built with Docker, allows easy deployment and execution. In addition to running the simulation, it offers real-time monitoring of CPU and memory usage using Prometheus, with resource usage visualizations generated through a dedicated Python script.
+This repository contains an NS-3 simulation pod that runs a C++ script (NS-3) "cttc-nr-mimo-demo-vbr-auto-ue.cc" to simulate different network conditions based on parameters provided in a csv file "output_with_UE.csv" . The simulation updates parameters at each timestep based on different time intervals and executes within a Kubernetes environment.
+This project provides an NS-3 simulation environment running inside a Kubernetes pod. It dynamically updates parameters like the number of UEs, data rate, simulation time, and packet size based on the input CSV file , adjusting these values over different time intervals. In addition to running the simulation, the containerized setup offers real-time monitoring of CPU and memory usage using Prometheus, with resource usage visualizations generated through a Python script.
 
 
 ## Pre-requisite
 Tested on Ubuntu 20.04
 
 # Install Docker and Build a K8s cluster
-to install Docker and build a Kubernetes cluster, refer to this repository : https://github.com/AIDY-F2N/OAI-UERANSIM?tab=readme-ov-file
+To install Docker and build a Kubernetes cluster, refer to this repository : https://github.com/AIDY-F2N/OAI-UERANSIM?tab=readme-ov-file
 
 # Run the NS-3 Docker image and deploy the pod
 
@@ -116,12 +116,19 @@ Example:
 
 # About cttc-nr-mimo-demo-vbr-auto-ue.cc
 
-This script is based on the CTTC NS-3 MIMO demo and provides a structured way to set up MIMO simulations using the 3GPP channel model from TR 38.900. The example consists of a single gNB and multiple UEs, adjusting parameters dynamically at different time intervals.
-
-This script builds upon the CTTC NS-3 MIMO demo, providing a framework for simulating MIMO scenarios using the 3GPP channel model from TR 38.900. It sets up a basic simulation environment consisting of a single gNB and multiple UEs, dynamically adjusting key parameters according to predefined time intervals. The simulation adapts to varying user densities and implements downlink flows with bandwidth adjustments. It also generates detailed simulation results, which are saved to a file for further analysis.
-
+This script builds upon the CTTC NS-3 MIMO demo, providing a framework for simulating MIMO scenarios using the 3GPP channel model from TR 38.900. The simulation environment consists of a single gNB and multiple UEs, dynamically adjusting key parameters according to predefined time intervals. The script is generated at each timestamp using the automate_sim_with_UE.py script, with changing variables including seconds, dataRate, simTime, packetSize, and numberOfUes, sourced from output_with_UE.csv. The simulation adapts to varying user densities and implements downlink flows with bandwidth adjustments.
 
 # Modification
+
+If you plan to modify the simulation, ensure that NS-3 is properly installed on your system. NS-3 is fundamental for compiling and running the simulation code.
+
+You can modify the simulation behavior by:
+
+* Editing the output_with_UE.csv file to change the simulation parameters dynamically.
+
+* Modifying the cttc-nr-mimo-demo-vbr-auto-ue.cc file to adjust the NS-3 simulation logic.
+
+* Updating the Python script (automate_sim_with_UE.py) to change how parameters are injected into the simulation.
 
 # Delete the pod and the docker image: 
 To completely remove the NS-3 simulation pod and its associated Docker image from your system, use the following commands:
