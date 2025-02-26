@@ -133,11 +133,11 @@ You can modify the simulation behavior by:
 # Delete the pod and the docker image: 
 To completely remove the NS-3 simulation pod and its associated Docker image from your system, use the following commands:
 
-Delete the Kubernetes deployment: This command stops and removes the running pod associated with the deployment.
+Delete the Kubernetes deployment.
 
     kubectl delete deployment ns3-simulation
 
-Remove the Docker image: This command forcefully deletes the local Docker image to free up disk space.
+Remove the local Docker image to free up disk space.
 
     docker rmi -f hadilbouasker/ns3-app:v7.0
 
