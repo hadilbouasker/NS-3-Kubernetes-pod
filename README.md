@@ -140,3 +140,8 @@ Delete the Kubernetes deployment: This command stops and removes the running pod
 Remove the Docker image: This command forcefully deletes the local Docker image to free up disk space.
 
     docker rmi -f hadilbouasker/ns3-app:v7.0
+
+# Contact
+
+Hadil Bouasker, hadil.bouasker@telecom-sudparis.eu
+
