@@ -36,29 +36,3 @@ spec:
 
 
 
-#kubectl apply -f ns3-simulation-pod.yaml
-
-#kubectl logs ns3-simulation-8f87cdbdf-frk74
-#kubectl exec -it ns3-simulation-pod -- /bin/bash
-#rm -rf /ns-3-dev/cttc-nr-mimo-demo-vbr-auto-ue/cmake-cache/*
-#cd /ns-3-dev
-#./ns3 configure --enable-examples --enable-tests
-#./ns3 build
-#cd cmake-cache
-#/usr/bin/cmake -DNS3_EXAMPLES=ON -DNS3_TESTS=ON ..
-#cd /ns-3-dev
-#./ns3 build
-
-#docker commands:
-
-#docker login
-#docker push hadilbouasker/ns3-image:latest
-
-    #to enter inside the image
-#docker run --rm -it ryankurte/docker-ns3 
-#docker run --rm -it praneethkumarvakrani/ns3:v5.0.3 bash
-#ls -lh
-    #to know what causes the storage 
-#docker history hadilbouasker/ns3-app:v1.0
-    #to remove the image
-#docker rmi -f hadilbouasker/ns3-app:v1.0
