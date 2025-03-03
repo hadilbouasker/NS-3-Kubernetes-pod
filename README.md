@@ -118,17 +118,47 @@ Example:
 
 This script builds upon the CTTC NS-3 MIMO demo, providing a framework for simulating MIMO scenarios using the 3GPP channel model from TR 38.900. The simulation environment consists of a single gNB and multiple UEs, dynamically adjusting key parameters according to predefined time intervals. The script is generated at each timestamp using the automate_sim_with_UE.py script, with changing variables including seconds, dataRate, simTime, packetSize, and numberOfUes, sourced from output_with_UE.csv. The simulation adapts to varying user densities and implements downlink flows with bandwidth adjustments.
 
-# Modification
+# Modifications and customization
+If you plan to modify the simulation, you can modify the simulation behavior by:
 
-If you plan to modify the simulation, ensure that NS-3 is properly installed on your system. NS-3 is fundamental for compiling and running the simulation code.
+- Editing the output_with_UE.csv file to change the simulation parameters dynamically.
 
-You can modify the simulation behavior by:
+- Modifying the cttc-nr-mimo-demo-vbr-auto-ue.cc file to adjust the NS-3 simulation logic.
 
-* Editing the output_with_UE.csv file to change the simulation parameters dynamically.
+- Updating the Python script (automate_sim_with_UE.py) to change how parameters are injected into the simulation
 
-* Modifying the cttc-nr-mimo-demo-vbr-auto-ue.cc file to adjust the NS-3 simulation logic.
+Follow these steps to replace a file inside the docker image permanently:
 
-* Updating the Python script (automate_sim_with_UE.py) to change how parameters are injected into the simulation.
+Run a container from the image:
+
+    docker run -it --name my-container hadilbouasker/ns3-app:v7.3 bash
+
+Remove the old file inside the container:
+
+    rm -rf /ns-3-dev/output_with_UE.csv
+
+open another terminal without exiting the running container and and copy the new file from your local machine:
+
+    docker cp /home/user/new_output_with_UE.csv my-container:/ns-3-dev/output_with_UE.csv
+
+now go back to the other terminal and exit the container:
+
+    exit
+
+Commit the modified container to a new image:
+
+    docker commit my-container hadilbouasker/ns3-app:v7.1
+
+Run a new container from the modified image to verify:
+
+    docker run -it hadilbouasker/ns3-app:v7.1 bash
+    ls -lah /ns-3-dev/output_with_UE.csv
+
+You can push the new image to your own DockerHub:
+
+    docker login
+    docker push your-dockerhub-username/ns3-app:v7.1
+Lastly, to deploy the pod with the new image, you have to change the image name in the pod's manifest file.
 
 # Delete the pod and the docker image: 
 To completely remove the NS-3 simulation pod and its associated Docker image from your system, use the following commands:
