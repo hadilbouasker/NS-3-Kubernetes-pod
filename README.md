@@ -131,7 +131,7 @@ Follow these steps to replace a file inside the docker image permanently:
 
 Run a container from the image:
 
-    docker run -it --name my-container hadilbouasker/ns3-app:v7.3 bash
+    docker run -it --name my-container hadilbouasker/ns3-app:v7.0 bash
 
 Remove the old file inside the container:
 
