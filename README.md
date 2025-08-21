@@ -12,8 +12,8 @@ This project provides an NS-3 simulation environment running inside a Kubernetes
 ## Pre-requisite
 Tested on Ubuntu 20.04
 
-# Install Docker and Build a K8s cluster
-To install Docker and build a Kubernetes cluster, refer to this repository : https://github.com/AIDY-F2N/OAI-UERANSIM?tab=readme-ov-file
+# Build a K8s cluster
+We assume that a Kubernetes cluster is already running using this repository: https://github.com/AIDY-F2N/build-k8s-cluster
 
 # Run the NS-3 Docker image and deploy the pod
 
