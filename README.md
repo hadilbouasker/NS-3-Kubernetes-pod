@@ -5,7 +5,7 @@
 </p>
 
 ## Description
-This project provides an NS-3 simulation environment running inside a Kubernetes pod. It dynamically updates parameters like the number of UEs, data rate, simulation time, and packet size based on the input CSV file ("output_with_UE.csv") , adjusting these values over different time intervals. In addition to running the simulation, the containerized setup offers real-time monitoring of CPU and memory usage using Prometheus, with resource usage visualizations generated through a Python script.The result is an environment that closely mimics dynamic workloads, making it suitable both for testing system behavior under varying conditions and for training machine learning models that learn from realistic resource usage patterns.
+This project provides an NS-3 simulation environment running inside a Kubernetes pod. It dynamically updates parameters like the number of UEs, data rate, simulation time, and packet size based on the input CSV file ("output_with_UE.csv") , adjusting these values over different time intervals. In addition to running the simulation, the containerized setup offers real-time monitoring of CPU and memory usage using Prometheus, with resource usage visualizations generated through a Python script. The result is an environment that closely mimics dynamic workloads, making it suitable both for testing system behavior under varying conditions and for training machine learning models that learn from realistic resource usage patterns.
 
 ## Pre-requisite
 Tested on Ubuntu 20.04
@@ -23,7 +23,7 @@ Pull the NS-3 simulation image from Docker Hub.
 
 Run this command to verify the installation of the docker image
 
-    docker images | grep hadilbouasker/ns3-app
+    docker images hadilbouasker/ns3-app:v10.8
 
 <p align="center">
   <img src="Figures/docker_images.png" alt="docker image" width="700"/>
