@@ -109,7 +109,7 @@ Example:
       python3 monitor_resources.py --prometheus-url http://157.159.68.41:30000 --pod-name ns3-simulation-847554cdf7-sxzl5
       
 <p align="center">
-  <img src="Figures/cpu_memory_plot.png" alt="CPU & Memory Usage Plot" width="700"/>
+  <img src="Figures/cpu_memory_plots.png" alt="CPU & Memory Usage Plot" width="700"/>
 </p>
 
 # About cttc-nr-mimo-demo-vbr-auto-ue.cc
