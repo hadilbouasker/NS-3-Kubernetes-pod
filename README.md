@@ -5,9 +5,7 @@
 </p>
 
 ## Description
-This repository contains an NS-3 simulation pod that runs a C++ script (NS-3) "cttc-nr-mimo-demo-vbr-auto-ue.cc" to simulate different network conditions based on parameters provided in a csv file "output_with_UE.csv" . The simulation updates parameters at each timestep based on different time intervals and executes within a Kubernetes environment.
-This project provides an NS-3 simulation environment running inside a Kubernetes pod. It dynamically updates parameters like the number of UEs, data rate, simulation time, and packet size based on the input CSV file , adjusting these values over different time intervals. In addition to running the simulation, the containerized setup offers real-time monitoring of CPU and memory usage using Prometheus, with resource usage visualizations generated through a Python script.
-
+This project provides an NS-3 simulation environment running inside a Kubernetes pod. It dynamically updates parameters like the number of UEs, data rate, simulation time, and packet size based on the input CSV file ("output_with_UE.csv") , adjusting these values over different time intervals. In addition to running the simulation, the containerized setup offers real-time monitoring of CPU and memory usage using Prometheus, with resource usage visualizations generated through a Python script.The result is an environment that closely mimics dynamic workloads, making it suitable both for testing system behavior under varying conditions and for training machine learning models that learn from realistic resource usage patterns.
 
 ## Pre-requisite
 Tested on Ubuntu 20.04
@@ -19,9 +17,9 @@ We assume that a Kubernetes cluster is already running using this repository: ht
 
 Follow these steps to pull the Docker image, run it locally, and deploy it into a Kubernetes pod:
 
-Pull the latest version of the NS-3 simulation image from Docker Hub.
+Pull the NS-3 simulation image from Docker Hub.
 
-    docker pull hadilbouasker/ns3-app:v7.0
+    docker pull hadilbouasker/ns3-app:v10.8
 
 Run this command to verify the installation of the docker image
 
