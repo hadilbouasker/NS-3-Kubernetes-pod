@@ -26,7 +26,7 @@ Run this command to verify the installation of the docker image
     docker images hadilbouasker/ns3-app:v10.8
 
 <p align="center">
-  <img src="Figures/docker_images.png" alt="docker image" width="700"/>
+  <img src="Figures/docker_image.png" alt="docker image" width="700"/>
 </p> 
 
 Apply the YAML configuration to deploy the NS-3 simulation as a pod in your cluster.
