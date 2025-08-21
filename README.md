@@ -98,7 +98,7 @@ we included Prometheus-based monitoring to track resource usage inside the pod. 
 Before running the monitoring script, make sure to update the following parameters:
 
 - **`--prometheus-url`**: replace with the URL of your Prometheus server.
-- **`--pod-name`**: replace with the name of your specific pod (you can get the pod name using `kubectl get pods`).
+- **`--pod-name`**: replace with the name of your specific pod.
 
 
 
