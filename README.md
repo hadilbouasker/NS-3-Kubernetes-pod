@@ -41,7 +41,7 @@ Check the status of the deployed pod to ensure it’s up and running.
   <img src="Figures/get_pods.png" alt="pod is running" width="700"/>
 </p>
 
-Check the logs of the pod by using this command:
+Check the logs of the pod by using this command, it allows you to display the C++ simulation output, which helps verify that NS-3 is running correctly and allows you to debug any issues during execution:
 
     kubectl logs <name-of-the-pod>
 
