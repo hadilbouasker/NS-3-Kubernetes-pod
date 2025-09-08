@@ -38,9 +38,11 @@ We publish **two Docker image variants**, each representing a different simulati
 </p> 
 
 ### 3) Deploy to Kubernetes
+
 Edit the manifest file (`ns3-simulation-pod.yaml`) and set the image to either **Scenario 1** or **Scenario 2**:
+
 <p align="center">
-  <img src="Figures/manifest.png" alt="manifest" width="700"/>
+  <img src="Figures/manifest.png" alt="manifest" width="600"/>
 </p>
 Apply the manifest:
 
@@ -54,7 +56,9 @@ Check the status of the deployed pod to ensure it’s up and running.
   <img src="Figures/get_pods.png" alt="pod is running" width="700"/>
 </p>
 
-Check the logs of the pod by using this command, it allows you to display the C++ simulation output, which helps verify that NS-3 is running correctly and allows you to debug any issues during execution:
+### 4) View logs
+
+This allows you to display the C++ simulation output, which helps verify that NS-3 is running correctly.
 
     kubectl logs <name-of-the-pod>
 
@@ -62,26 +66,19 @@ Check the logs of the pod by using this command, it allows you to display the C+
   <img src="Figures/pod_logs.png" alt="Pod Logs" width="700"/>
 </p>
 
-# Setup Prometheus Monitoring
+## Setup Prometheus Monitoring
 
 In this phase, we set up Prometheus on our Kubernetes cluster. This setup collects node, pods, and service metrics automatically using Prometheus service discovery configurations.
 
-The "prometheus" folder contains all Prometheus Kubernetes Manifest Files. Inside the "prometheus" folder, open a terminal and execute the following command to create a new namespace named monitoring.
+Inside the "prometheus" folder, open a terminal and execute the following commands:
 
     kubectl create namespace monitoring
-You can create the RBAC role by running the following command.
-
+    
     kubectl create -f clusterRole.yaml
-
-Create the ConfigMap by running the following command.
 
     kubectl create -f config-map.yaml
 
-Deploy Prometheus in the monitoring namespace using the following command.
-
     kubectl create  -f prometheus-deployment.yaml 
-
-You can check the created deployment using the following command.
 
     kubectl get deployments --namespace=monitoring
 
@@ -89,22 +86,18 @@ You can check the created deployment using the following command.
   <img src="Figures/prometheus1.png" alt="prometheus1" width="700"/>
 </p>
 
-
-You can check the created pod using the following command.
-
     kubectl get pods --namespace=monitoring
 
 <p align="center">
   <img src="Figures/prometheus2.png" alt="prometheus2" width="700"/>
 </p>
 
-
-Create the service using the following command:
+Finally, create the service using the following command:
 
     kubectl create -f prometheus-service.yaml --namespace=monitoring
 
 
-# Monitor CPU & Memory usage
+## Monitor CPU & Memory usage
 
 we included Prometheus-based monitoring to track resource usage inside the pod. A Python script is provided to visualize CPU and memory usage over time.
 
