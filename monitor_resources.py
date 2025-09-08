@@ -29,7 +29,7 @@ def update(frame, prometheus_url, pod_name, timestamps, cpu_values, memory_value
     cpu_values.append(cpu_usage)
     memory_values.append(memory_usage)
 
-    if len(timestamps) > 3600:  # Limit to 1 hour of data (assuming 1 data point per second)
+    if len(timestamps) > 7200:  # 2 hours of data in the window (you can change that)
         timestamps.pop(0)
         cpu_values.pop(0)
         memory_values.pop(0)
