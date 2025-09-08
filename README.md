@@ -1,11 +1,15 @@
-# NS-3 Kubernetes pod
+# ns3-kubernetes-simulation
 
 <p align="center">
   <img src="Figures/1_IconsAll_Hori.png" alt="logo" width="800"/>
 </p>
 
 ## Description
-This project provides an NS-3 simulation environment running inside a Kubernetes pod. It dynamically updates parameters like the number of UEs, data rate, simulation time, and packet size based on the input CSV file ("output_with_UE.csv") , adjusting these values over different time intervals. In addition to running the simulation, the containerized setup offers real-time monitoring of CPU and memory usage using Prometheus, with resource usage visualizations generated through a Python script. The result is an environment that closely mimics dynamic workloads, making it suitable both for testing system behavior under varying conditions and for training machine learning models that learn from realistic resource usage patterns.
+This project provides an NS-3 simulation environment running inside a Kubernetes pod. It dynamically updates parameters like the number of UEs, data rate, simulation time, and packet size based on the input CSV file ("output_with_UE.csv") , adjusting these values over different time intervals. The container’s CPU and memory usage can be monitored with Prometheus, and a Python visualizer is provided to plot these metrics over time.
+
+The result is an environment that mimics dynamic workloads, useful both for:
+- **Testing** system behavior under fluctuating demand
+- **Training** ML models on realistic resource-usage traces
 
 ## Pre-requisite
 Tested on Ubuntu 20.04
