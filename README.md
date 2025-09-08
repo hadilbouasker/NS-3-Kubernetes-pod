@@ -16,8 +16,9 @@ We publish two Docker image variants, each representing a different simulation s
 
 | Image tag | Scenario | Description | CSV / Params |
 |-----------|----------|-------------|--------------|
-| `hadilbouasker/ns3-app:v10.8-s1` | **Scenario 1 – Monthly trace** | Workload pattern inspired by `one_month.csv`; updates occur at wider intervals, producing **more pronounced traffic fluctuations** over time | `one_month.csv` |
-| `hadilbouasker/ns3-app:v10.8-s2` | **Scenario 2 – Weekly trace** | Workload pattern inspired by `seven_month.csv`; updates occur at shorter intervals, resulting in **denser events and a busier workload profile** | `seven_month.csv` |
+| `hadilbouasker/ns3-app:v10.8` | **Scenario 1 – High-frequency trace** | Workload generated from `one_month.csv`; updates occur at short intervals, creating a denser and busier workload profile | `one_month.csv` |
+| `hadilbouasker/ns3-app:v10.9` | **Scenario 2 – Lower-frequency trace** | Workload generated from `7_month.csv`; updates occur at wider intervals, leading to a less busy but still variable workload profile | `7_month.csv` |
+
 
 
 ## Prerequisites
