@@ -5,14 +5,23 @@
 </p>
 
 ## Description
-This project provides an NS-3 simulation environment running inside a Kubernetes pod. It dynamically updates parameters like the number of UEs, data rate, simulation time, and packet size based on the input CSV file ("output_with_UE.csv") , adjusting these values over different time intervals. The container’s CPU and memory usage can be monitored with Prometheus, and a Python visualizer is provided to plot these metrics over time.
+This project provides an NS-3 simulation environment deployed in a Kubernetes pod. The simulation dynamically updates parameters such as the number of UEs, data rate, simulation time, and packet size based on the input CSV file (output_with_UE.csv), adapting these values over different time intervals. CPU and memory usage of the pod can be monitored with Prometheus, and a Python script is included to visualize these metrics over time.
 
 The result is an environment that mimics dynamic workloads, useful both for:
 - **Testing** system behavior under fluctuating demand
 - **Training** ML models on realistic resource-usage traces
+- 
+## Scenarios & Images
+We publish **two Docker image variants**, each representing a different simulation scenario:
 
-## Pre-requisite
-Tested on Ubuntu 20.04
+| Image tag | Scenario | Description | CSV / Params |
+|-----------|----------|-------------|--------------|
+| `hadilbouasker/ns3-app:v10.8-s1` | **Scenario 1 – Trace-driven** | Time-varying workload driven by CSV; periodic changes to UEs, data rate, sim time, packet size | `output_with_UE.csv` |
+| `hadilbouasker/ns3-app:v10.8-s2` | **Scenario 2 – <your-scenario-name>** | <Short description of the second scenario> | `<your_csv_or_params>` |
+
+## Prerequisites
+- Ubuntu 20.04 (tested)  
+- A running Kubernetes cluster ; We assume that a Kubernetes cluster is already running using this repository: https://github.com/AIDY-F2N/build-k8s-cluster
 
 # Build a K8s cluster
 We assume that a Kubernetes cluster is already running using this repository: https://github.com/AIDY-F2N/build-k8s-cluster
