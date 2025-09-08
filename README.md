@@ -26,9 +26,8 @@ We publish **two Docker image variants**, each representing a different simulati
 ## Quick Start
 
 ### 1) Pull the image
-```bash
-# Scenario 1
-docker pull hadilbouasker/ns3-app:v10.8-s1
+
+    docker pull hadilbouasker/ns3-app:v10.8
 
 ### 2) verify the installation of the docker image
 
@@ -38,7 +37,12 @@ docker pull hadilbouasker/ns3-app:v10.8-s1
   <img src="Figures/docker_image.png" alt="docker image" width="700"/>
 </p> 
 
-Apply the YAML configuration to deploy the NS-3 simulation as a pod in your cluster.
+### 3) Deploy to Kubernetes
+Edit the manifest file (`ns3-simulation-pod.yaml`) and set the image to either **Scenario 1** or **Scenario 2**:
+<p align="center">
+  <img src="Figures/manifest.png" alt="manifest" width="700"/>
+</p>
+Apply the manifest:
 
     kubectl apply -f ns3-simulation-pod.yaml
 
