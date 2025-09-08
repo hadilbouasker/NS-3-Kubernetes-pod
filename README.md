@@ -16,8 +16,8 @@ We publish **two Docker image variants**, each representing a different simulati
 
 | Image tag | Scenario | Description | CSV / Params |
 |-----------|----------|-------------|--------------|
-| `hadilbouasker/ns3-app:v10.8-s1` | **Scenario 1 – Trace-driven** | Time-varying workload driven by CSV; periodic changes to UEs, data rate, sim time, packet size | `output_with_UE.csv` |
-| `hadilbouasker/ns3-app:v10.8-s2` | **Scenario 2 – <your-scenario-name>** | <Short description of the second scenario> | `<your_csv_or_params>` |
+| `hadilbouasker/ns3-app:v10.8` | **Scenario 1 – Trace-driven** | Time-varying workload driven by CSV; periodic changes to UEs, data rate, sim time, packet size | `one_month.csv` |
+| `hadilbouasker/ns3-app:v10.8` | **Scenario 2 – <your-scenario-name>** | <Short description of the second scenario> | `<7_month>` |
 
 ## Prerequisites
 - Ubuntu 20.04 (tested)  
