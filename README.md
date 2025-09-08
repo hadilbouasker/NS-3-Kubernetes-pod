@@ -70,7 +70,7 @@ This allows you to display the C++ simulation output, which helps verify that NS
 
 In this phase, we set up Prometheus on our Kubernetes cluster. This setup collects node, pods, and service metrics automatically using Prometheus service discovery configurations.
 
-Inside the "prometheus" folder, open a terminal and execute the following commands:
+Inside the "prometheus" folder, open a terminal and execute the following commands one by one:
 
     kubectl create namespace monitoring
     
@@ -105,8 +105,6 @@ Before running the monitoring script, make sure to update the following paramete
 
 - **`--prometheus-url`**: replace with the URL of your Prometheus server.
 - **`--pod-name`**: replace with the name of your specific pod.
-
-
 
       python3 monitor_resources.py --prometheus-url http://<your-prometheus-url>:<port> --pod-name <your-pod-name>
   
