@@ -44,7 +44,7 @@ We publish two Docker image variants, each representing a different simulation s
 Edit the manifest file (`ns3-simulation-pod.yaml`) and set the image to either **Scenario 1** or **Scenario 2**:
 
 <p align="center">
-  <img src="Figures/manifest.png" alt="manifest" width="600"/>
+  <img src="Figures/manifest.png" alt="manifest" width="500"/>
 </p>
 Apply the manifest:
 
