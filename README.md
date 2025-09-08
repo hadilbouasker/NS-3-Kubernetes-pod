@@ -10,7 +10,7 @@ This project provides an NS-3 simulation environment deployed in a Kubernetes po
 The result is an environment that mimics dynamic workloads, useful both for:
 - **Testing** system behavior under fluctuating demand
 - **Training** ML models on realistic resource-usage traces
-- 
+
 ## Scenarios & Images
 We publish two Docker image variants, each representing a different simulation scenario:
 
@@ -114,18 +114,21 @@ Example:
 
       python3 monitor_resources.py --prometheus-url http://157.159.68.41:30000 --pod-name ns3-simulation-847554cdf7-sxzl5
       
+This is the resource usage visualization for **Scenario 1**
+
 <p align="center">
   <img src="Figures/cpu_memory_plots.png" alt="CPU & Memory Usage Plot" width="800"/>
 </p>
 
 # About cttc-nr-mimo-demo-vbr-auto-ue.cc
 
-This script builds upon the CTTC NS-3 MIMO demo, providing a framework for simulating MIMO scenarios using the 3GPP channel model from TR 38.900. The simulation environment consists of a single gNB and multiple UEs, dynamically adjusting key parameters according to predefined time intervals. The script is generated at each timestamp using the automate_sim_with_UE.py script, with changing variables including seconds, dataRate, simTime, packetSize, and numberOfUes, sourced from output_with_UE.csv. The simulation adapts to varying user densities and implements downlink flows with bandwidth adjustments.
+This script builds upon the CTTC NS-3 MIMO demo, providing a framework for simulating MIMO scenarios using the 3GPP channel model from TR 38.900. The simulation environment consists of a single gNB and multiple UEs, dynamically adjusting key parameters according to predefined time intervals. The script is generated at each timestamp using the automate_sim_with_UE.py script, with changing variables including seconds, dataRate, packetSize, and numberOfUes, sourced from one_month.csv for scénario1 or 7_month.csv. The simulation adapts to varying user densities and implements downlink flows with bandwidth adjustments.
 
-# Modifications and customization
+## Customize the Simulation
+
 If you plan to modify the simulation, you can modify the simulation behavior by:
 
-- Editing the output_with_UE.csv file to change the simulation parameters dynamically.
+- Editing the one_month.csv file for scénario1 or the 7_month.csv file for scénario2 to change input parameters dynamically.
 
 - Modifying the cttc-nr-mimo-demo-vbr-auto-ue.cc file to adjust the NS-3 simulation logic.
 
@@ -133,36 +136,36 @@ If you plan to modify the simulation, you can modify the simulation behavior by:
 
 Follow these steps to replace a file inside the docker image permanently:
 
-Run a container from the image:
+### 1) Run a container from the image:
 
-    docker run -it --name my-container hadilbouasker/ns3-app:v7.0 bash
+    docker run -it --name my-container hadilbouasker/ns3-app:v10.8 bash
 
-Remove the old file inside the container:
+### 2) Remove the old file inside the container:
 
-    rm -rf /ns-3-dev/output_with_UE.csv
+    rm -rf /ns-3-dev/one_month.csv
 
-open another terminal without exiting the running container and and copy the new file from your local machine:
+### 3) open another terminal without exiting the running container and copy the modified file from your local machine:
 
-    docker cp /home/user/new_output_with_UE.csv my-container:/ns-3-dev/output_with_UE.csv
+    docker cp /home/user/new_one_month.csv my-container:/ns-3-dev/one_month.csv
 
-now go back to the other terminal and exit the container:
+### 4) Now go back to the other terminal and exit the container:
 
     exit
 
-Commit the modified container to a new image:
+### 5) Commit the modified container to a new image:
 
-    docker commit my-container hadilbouasker/ns3-app:v7.1
+    docker commit my-container hadilbouasker/ns3-app:v11.0
 
-Run a new container from the modified image to verify:
+### 6) Run a new container from the modified image to verify:
 
-    docker run -it hadilbouasker/ns3-app:v7.1 bash
-    ls -lah /ns-3-dev/output_with_UE.csv
+    docker run -it hadilbouasker/ns3-app:v10.8 bash
+    ls -lah /ns-3-dev/one_month.csv
 
-You can push the new image to your own DockerHub:
+### 7) You can push the new image to your own DockerHub:
 
     docker login
-    docker push your-dockerhub-username/ns3-app:v7.1
-Lastly, to deploy the pod with the new image, you have to change the image name in the pod's manifest file.
+    docker push your-dockerhub-username/ns3-app:v11.0
+### 8) Lastly, to deploy the pod with the new image, you have to change the image name in the pod's manifest file.
 
 ## Cleanup 
 
