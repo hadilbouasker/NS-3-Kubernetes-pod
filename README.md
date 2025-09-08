@@ -12,12 +12,13 @@ The result is an environment that mimics dynamic workloads, useful both for:
 - **Training** ML models on realistic resource-usage traces
 - 
 ## Scenarios & Images
-We publish **two Docker image variants**, each representing a different simulation scenario:
+We publish two Docker image variants, each representing a different simulation scenario:
 
 | Image tag | Scenario | Description | CSV / Params |
 |-----------|----------|-------------|--------------|
-| `hadilbouasker/ns3-app:v10.8` | **Scenario 1 – Trace-driven** | Time-varying workload driven by CSV; periodic changes to UEs, data rate, sim time, packet size | `one_month.csv` |
-| `hadilbouasker/ns3-app:v10.8` | **Scenario 2 – <your-scenario-name>** | <Short description of the second scenario> | `<7_month>` |
+| `hadilbouasker/ns3-app:v10.8-s1` | **Scenario 1 – Monthly trace** | Workload pattern inspired by `one_month.csv`; updates occur at wider intervals, producing **more pronounced traffic fluctuations** over time | `one_month.csv` |
+| `hadilbouasker/ns3-app:v10.8-s2` | **Scenario 2 – Weekly trace** | Workload pattern inspired by `seven_month.csv`; updates occur at shorter intervals, resulting in **denser events and a busier workload profile** | `seven_month.csv` |
+
 
 ## Prerequisites
 - Ubuntu 20.04 (tested)  
