@@ -23,18 +23,14 @@ We publish **two Docker image variants**, each representing a different simulati
 - Ubuntu 20.04 (tested)  
 - A running Kubernetes cluster ; We assume that a Kubernetes cluster is already running using this repository: https://github.com/AIDY-F2N/build-k8s-cluster
 
-# Build a K8s cluster
-We assume that a Kubernetes cluster is already running using this repository: https://github.com/AIDY-F2N/build-k8s-cluster
+## Quick Start
 
-# Run the NS-3 Docker image and deploy the pod
+### 1) Pull the image
+```bash
+# Scenario 1
+docker pull hadilbouasker/ns3-app:v10.8-s1
 
-Follow these steps to pull the Docker image, run it locally, and deploy it into a Kubernetes pod:
-
-Pull the NS-3 simulation image from Docker Hub.
-
-    docker pull hadilbouasker/ns3-app:v10.8
-
-Run this command to verify the installation of the docker image
+### 2) verify the installation of the docker image
 
     docker images hadilbouasker/ns3-app:v10.8
 
