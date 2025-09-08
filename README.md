@@ -162,7 +162,8 @@ You can push the new image to your own DockerHub:
     docker push your-dockerhub-username/ns3-app:v7.1
 Lastly, to deploy the pod with the new image, you have to change the image name in the pod's manifest file.
 
-# Delete the pod and the docker image: 
+## Cleanup 
+
 To completely remove the NS-3 simulation pod and its associated Docker image from your system, use the following commands:
 
 Delete the Kubernetes deployment.
@@ -171,9 +172,9 @@ Delete the Kubernetes deployment.
 
 Remove the local Docker image to free up disk space.
 
-    docker rmi -f hadilbouasker/ns3-app:v7.0
+    docker rmi -f hadilbouasker/ns3-app:v10.8
 
-# Contact
+## Contact
 
 Hadil Bouasker, hadil.bouasker@telecom-sudparis.eu
 
