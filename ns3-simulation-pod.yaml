@@ -14,8 +14,8 @@ spec:
     spec:
       containers:
       - name: ns3-container
-        image: hadilbouasker/ns3-app:v7.0 
-        command: ["python3", "automate_sim_with_UE.py"]
+        image: hadilbouasker/ns3-app:v10.8
+        command: ["/usr/bin/tini","--","python3","automate_sim_with_UE.py"]
         resources:
           requests:
             memory: "500Mi"   
